@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Controller("user")
 @RequestMapping("/user")
-@CrossOrigin(allowCredentials="true", allowedHeaders = "*")
+@CrossOrigin(allowCredentials="true", allowedHeaders = "*")//跨域
 public class UserController  extends BaseController{
 
     @Autowired
@@ -153,7 +153,7 @@ public class UserController  extends BaseController{
         //生成登录凭证token，UUID
         String uuidToken = UUID.randomUUID().toString();
         uuidToken = uuidToken.replace("-","");
-        //建议token和用户登陆态之间的联系
+        //建立token和用户登陆态之间的联系
         redisTemplate.opsForValue().set(uuidToken,userModel);
         redisTemplate.expire(uuidToken,1, TimeUnit.HOURS);
 

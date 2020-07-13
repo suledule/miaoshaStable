@@ -116,7 +116,7 @@ public class PromoServiceImpl implements PromoService {
             return null;
         }
 
-        //获取秒杀大闸的count数量
+        //获取秒杀大闸的count数量（数量减一）
         long result = redisTemplate.opsForValue().increment("promo_door_count_"+promoId,-1);
         if(result < 0){
             return null;

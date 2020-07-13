@@ -6,7 +6,7 @@
 
     <context id="DB2Tables"    targetRuntime="MyBatis3">
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/miaosha" userId="root" password="root">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/miaosha" userId="root" password="123456">
         </jdbcConnection>
         <!--生成DataObject类存放位置-->
         <javaModelGenerator targetPackage="com.imooc.miaoshaproject.dataobject" targetProject="src/main/java">
