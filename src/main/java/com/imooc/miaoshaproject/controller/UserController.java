@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by hzllb on 2018/11/11.
  */
+//REST充分运用GET、POST、PUT和DELETE，约定了这4个接口分别获取、创建、替换和删除“资源”
 @Controller("user")
 @RequestMapping("/user")
 @CrossOrigin(allowCredentials="true", allowedHeaders = "*")//跨域
@@ -53,7 +54,9 @@ public class UserController  extends BaseController{
                                      @RequestParam(name="age")Integer age,
                                      @RequestParam(name="password")String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         //验证手机号和对应的otpcode相符合
-        String inSessionOtpCode = (String) this.httpServletRequest.getSession().getAttribute(telphone);
+        //String inSessionOtpCode = (String) this.httpServletRequest.getSession().getAttribute(telphone);
+        //验证手机号和redis内对应的otpcode相符合
+        String inSessionOtpCode = (String) redisTemplate.opsForValue().get("otpCode_"+telphone);
         if(!com.alibaba.druid.util.StringUtils.equals(otpCode,inSessionOtpCode)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"短信验证码不符合");
         }
@@ -91,7 +94,10 @@ public class UserController  extends BaseController{
 
 
         //将OTP验证码同对应用户的手机号关联，使用httpsession的方式绑定他的手机号与OTPCODE
-        httpServletRequest.getSession().setAttribute(telphone,otpCode);
+        //httpServletRequest.getSession().setAttribute(telphone,otpCode);
+        //将OTP验证码同对应用户的手机号关联，存入redis
+        redisTemplate.opsForValue().set("otpCode_"+telphone,otpCode);
+        redisTemplate.expire("otpCode_"+telphone,5, TimeUnit.MINUTES);
 
 
 

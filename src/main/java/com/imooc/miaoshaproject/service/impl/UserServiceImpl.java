@@ -127,6 +127,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         UserDO userDO = new UserDO();
+        //BeanUtils.copyProperties("要转换的类", "转换后的类"); 将属性名相同的字段转换
         BeanUtils.copyProperties(userModel,userDO);
 
         return userDO;

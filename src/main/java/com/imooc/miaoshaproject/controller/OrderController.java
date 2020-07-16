@@ -61,7 +61,24 @@ public class OrderController extends BaseController {
     public void init(){
         executorService = Executors.newFixedThreadPool(20);
 
+        //Google的Guava，基于令牌桶算法来完成限流
         orderCreateRateLimiter = RateLimiter.create(300);
+
+    }
+
+    @RequestMapping(value = "/getuser",method = {RequestMethod.GET,RequestMethod.POST})
+    @ResponseBody
+    public CommonReturnType getuser(HttpServletResponse response) throws BusinessException, IOException {
+        String token = httpServletRequest.getParameterMap().get("token")[0];
+        if(StringUtils.isEmpty(token)){
+            throw new BusinessException(EmBusinessError.USER_NOT_LOGIN,"用户还未登陆，不能生成验证码");
+        }
+        UserModel userModel = (UserModel) redisTemplate.opsForValue().get(token);
+        if(userModel == null){
+            throw new BusinessException(EmBusinessError.USER_NOT_LOGIN,"用户还未登陆，不能生成验证码");
+        }
+        return CommonReturnType.create(null);
+
 
     }
 
@@ -109,7 +126,7 @@ public class OrderController extends BaseController {
         //通过verifycode验证验证码的有效性
         String redisVerifyCode = (String) redisTemplate.opsForValue().get("verify_code_"+userModel.getId());
         if(StringUtils.isEmpty(redisVerifyCode)){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"请求非法");
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"验证码已失效");
         }
         if(!redisVerifyCode.equalsIgnoreCase(verifyCode)){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,"请求非法，验证码错误");

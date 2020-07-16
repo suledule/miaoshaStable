@@ -114,6 +114,7 @@ public class OrderServiceImpl implements OrderService {
         stockLogDO.setStatus(2);
         stockLogDOMapper.updateByPrimaryKeySelective(stockLogDO);
 
+        //最近的事务提交后（上面的事务），再执行里面的内容
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
                 @Override
                 public void afterCommit(){

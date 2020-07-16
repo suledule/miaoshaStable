@@ -50,11 +50,16 @@ public class MqProducer {
         producer.setNamesrvAddr(nameAddr);
         producer.start();
 
+        //事务型producer
         transactionMQProducer = new TransactionMQProducer("transaction_producer_group");
         transactionMQProducer.setNamesrvAddr(nameAddr);
         transactionMQProducer.start();
 
         transactionMQProducer.setTransactionListener(new TransactionListener() {
+            //LocalTransactionState状态：
+            // COMMIT_MESSAGE，发送成功，将prepare状态的消息发送
+            // ROLLBACK_MESSAGE，发送失败，将prepare状态的消息撤回
+            // UNKNOW，状态未知，将prepare的消息等待，定时回调checkLocalTransaction方法
             @Override
             public LocalTransactionState executeLocalTransaction(Message msg, Object arg) {
                 //真正要做的事  创建订单
@@ -78,7 +83,7 @@ public class MqProducer {
 
             @Override
             public LocalTransactionState checkLocalTransaction(MessageExt msg) {
-                //根据是否扣减库存成功，来判断要返回COMMIT,ROLLBACK还是继续UNKNOWN
+                //根据是否扣减库存成功，来判断要返回COMMIT,ROLLBACK还是继续UNKNOW
                 String jsonString  = new String(msg.getBody());
                 Map<String,Object>map = JSON.parseObject(jsonString, Map.class);
                 Integer itemId = (Integer) map.get("itemId");
@@ -116,7 +121,7 @@ public class MqProducer {
                 JSON.toJSON(bodyMap).toString().getBytes(Charset.forName("UTF-8")));
         TransactionSendResult sendResult = null;
         try {
-
+            //发送事务消息，1发送消息，2该消息是prepare状态，不被消费者看到，3执行executeLocalTransaction方法
             sendResult = transactionMQProducer.sendMessageInTransaction(message,argsMap);
         } catch (MQClientException e) {
             e.printStackTrace();
@@ -141,6 +146,7 @@ public class MqProducer {
         Message message = new Message(topicName,"increase",
                 JSON.toJSON(bodyMap).toString().getBytes(Charset.forName("UTF-8")));
         try {
+            //发送普通消息，只管发送
             producer.send(message);
         } catch (MQClientException e) {
             e.printStackTrace();
