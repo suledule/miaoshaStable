@@ -25,8 +25,9 @@ import java.awt.image.RenderedImage;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by hzllb on 2018/11/18.
@@ -56,6 +57,8 @@ public class OrderController extends BaseController {
     private ExecutorService executorService;
 
     private RateLimiter orderCreateRateLimiter;
+
+    public static AtomicInteger count = new AtomicInteger(0);
 
     @PostConstruct
     public void init(){
@@ -149,6 +152,7 @@ public class OrderController extends BaseController {
                                         @RequestParam(name="promoId",required = false)Integer promoId,
                                         @RequestParam(name="promoToken",required = false)String promoToken) throws BusinessException {
 
+        //tryAcquire()的作用是尝试的获得1个许可，如果获取不到则返回false，acquire()拿不到就等待，拿到为止
         if(!orderCreateRateLimiter.tryAcquire()){
             throw new BusinessException(EmBusinessError.RATELIMIT);
         }
@@ -198,6 +202,8 @@ public class OrderController extends BaseController {
         } catch (ExecutionException e) {
             throw new BusinessException(EmBusinessError.UNKNOWN_ERROR);
         }
+        //删除令牌
+        //redisTemplate.delete("promo_token_"+promoId+"_userid_"+userModel.getId()+"_itemid_"+itemId);
 
         return CommonReturnType.create(null);
     }

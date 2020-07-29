@@ -5,6 +5,7 @@ import com.imooc.miaoshaproject.dao.PromoDOMapper;
 import com.imooc.miaoshaproject.dataobject.PromoDO;
 import com.imooc.miaoshaproject.error.BusinessException;
 import com.imooc.miaoshaproject.error.EmBusinessError;
+import com.imooc.miaoshaproject.service.CacheService;
 import com.imooc.miaoshaproject.service.ItemService;
 import com.imooc.miaoshaproject.service.PromoService;
 import com.imooc.miaoshaproject.service.UserService;
@@ -38,6 +39,9 @@ public class PromoServiceImpl implements PromoService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CacheService cacheService;
 
     @Override
     public PromoModel getPromoByItemId(Integer itemId) {
@@ -73,8 +77,14 @@ public class PromoServiceImpl implements PromoService {
         //将库存同步到redis内
         redisTemplate.opsForValue().set("promo_item_stock_"+itemModel.getId(), itemModel.getStock());
 
-        //将大闸的限制数字设到redis内
-        redisTemplate.opsForValue().set("promo_door_count_"+promoId,itemModel.getStock().intValue() * 5);
+        //将大闸的限制数字设到redis内(设置令牌发放数量是库存的2倍）
+        redisTemplate.opsForValue().set("promo_door_count_"+promoId,itemModel.getStock().intValue() * 2);
+
+        //将库存售罄标识删除
+        redisTemplate.delete("promo_item_stock_invalid_"+itemModel.getId());
+
+        //更新本地缓存数据
+        cacheService.setCommonCache("item_"+itemModel.getId(),itemModel);
 
     }
 
