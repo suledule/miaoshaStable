@@ -9,9 +9,19 @@ import java.util.concurrent.Future;
  */
 public class SubmitAndExecute {
     public static void main(String[] args) {
+
+        //submit  有返回值
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         Future future = executorService.submit(()->{
             System.out.println(Thread.currentThread().getName()+"==>");
         });
+
+        //execute 无返回值
+        executorService.execute(new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }));
     }
 }
