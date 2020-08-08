@@ -45,9 +45,13 @@ public class CASTest {
         }).start();
 
 
+        while(Thread.activeCount() > 2){
+            Thread.yield();
+        }
         //initalRef 范围在-127到128，在IntegerCache.cache产生，会复用此对象，超过范围，在堆中产生，不会复用此对象
         Integer integer = 1000;
         Integer integer1 = 1000;
+        // == 如果比较的对象是基本数据类型，则比较的是数值是否一致；如果比较的是引用数据类型，则比较的是对象的地址值是否一致
         System.out.println("result:"+(integer==integer1));
         System.out.println("equals:"+(integer.equals(integer1)));
     }

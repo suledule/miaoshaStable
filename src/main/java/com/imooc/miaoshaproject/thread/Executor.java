@@ -23,12 +23,24 @@ public class Executor {
                 System.out.println(Thread.currentThread().getName()+"-->");
             });
         }
+        executorService.shutdown();
+        while(Thread.activeCount() > 2){
+            Thread.yield();
+        }
+
+
         System.out.println("=============");
         for (int i = 0; i < 10; i++) {
             executorService1.execute(()->{
                 System.out.println(Thread.currentThread().getName()+"-->");
             });
         }
+        executorService1.shutdown();
+        while(Thread.activeCount() > 2){
+            Thread.yield();
+        }
+
+
         System.out.println("=============");
         for (int i = 0; i < 10; i++) {
             executorService2.execute(()->{
@@ -36,6 +48,6 @@ public class Executor {
             });
         }
         //关闭线程池
-        executorService.shutdown();
+        executorService2.shutdown();
     }
 }

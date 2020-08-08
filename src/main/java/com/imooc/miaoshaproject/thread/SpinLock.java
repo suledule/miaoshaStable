@@ -45,15 +45,17 @@ public class SpinLock {
  * 自己实现一个锁
  */
 class MyLock{
-    private AtomicReference<Thread> atomic = new AtomicReference<>();
+    //null为默认值
+    private AtomicReference<Thread> atomic = new AtomicReference<>(null);
 
     public void myLock(){
         Thread thread = Thread.currentThread();
         //System.out.println(Thread.currentThread().getName()+"===>上锁");
 
         //自旋锁 使用CAS,一直循环，直到当前线程调用了myUnLock(),才会跳出循环
+        //(期望值，更新值）
         while(!atomic.compareAndSet(null,thread)){
-            System.out.println("=========");
+//            System.out.println("=========");
         }
     }
 
