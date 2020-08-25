@@ -1,4 +1,4 @@
-package com.imooc.miaoshaproject.designmode;
+package com.imooc.miaoshaproject.designmode.single;
 
 /**
  * 枚举

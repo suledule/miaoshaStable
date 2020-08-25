@@ -1,4 +1,4 @@
-package com.imooc.miaoshaproject.designmode;
+package com.imooc.miaoshaproject.designmode.single;
 
 /**
  * 单例模式（单例对象的类必须保证只有一个实例存在）
@@ -19,10 +19,10 @@ public class SingleHungry {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
-            new Thread(()->{
-                SingleHungry hungry = new SingleHungry();
-            }).start();
-        }
+//        for (int i = 0; i < 10; i++) {
+//            new Thread(()->{
+//                SingleHungry hungry = new SingleHungry();
+//            }).start();
+//        }
     }
 }

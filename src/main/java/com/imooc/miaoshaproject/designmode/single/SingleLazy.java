@@ -1,4 +1,4 @@
-package com.imooc.miaoshaproject.designmode;
+package com.imooc.miaoshaproject.designmode.single;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 public class SingleLazy {
 
     private  static boolean flag = false;
+    //构造方法：当类实例化一个对象时会自动调用构造方法，初始化对象
     private SingleLazy(){
         synchronized (SingleLazy.class){
             if(flag == false){
