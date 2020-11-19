@@ -5,7 +5,7 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 队列 BlockingQueue
+ * 队列 BlockingQueue2
  */
 public class BlockingQueue {
     public static void main(String[] args){
