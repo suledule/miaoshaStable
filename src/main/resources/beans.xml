@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--在IOC容器中创建一个名字为userDaoImpl的UserDaoImpl类对象，等价于UserDaoImpl userDaoImpl = new UserDaoImpl()-->
+<!--    <bean id="userDaoImpl" class="com.imooc.miaoshaproject.spring.spring01.dao.UserDaoImpl"></bean>-->
+<!--    <bean id="userDaoMysqlImpl" class="com.imooc.miaoshaproject.spring.spring01.dao.UserDaoMysqlImpl"></bean>-->
+
+<!--    <bean id="userServiceImpl" class="com.imooc.miaoshaproject.spring.spring01.service.UserServiceImpl">-->
+<!--        &lt;!&ndash;property：属性 ref：引入已存在IOC容器中的对象 &ndash;&gt;-->
+<!--        <property name="userDao" ref="userDaoMysqlImpl"></property>-->
+<!--    </bean>-->
+
+</beans>

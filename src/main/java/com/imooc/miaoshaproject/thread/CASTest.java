@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
 /**
- * CAS compare and set 比较并交换
+ * CAS compare and swap 比较并交换
  * ABA 问题 （使用版本号解决）
  */
 public class CASTest {

@@ -28,7 +28,7 @@ public class ThreadPoolExecutorTest {
                 2, //核心线程（最小开启线程）
                 5,  //最大线程
                 3,  //超时时间
-                TimeUnit.SECONDS,  //超市单位
+                TimeUnit.SECONDS,  //超时单位
                 new LinkedBlockingQueue<Runnable>(3),  //队列大小
                 Executors.defaultThreadFactory(),  //默认线程工厂
                 new ThreadPoolExecutor.CallerRunsPolicy()); //四种拒绝策略

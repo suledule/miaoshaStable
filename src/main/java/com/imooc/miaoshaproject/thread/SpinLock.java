@@ -1,5 +1,6 @@
 package com.imooc.miaoshaproject.thread;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -63,5 +64,6 @@ class MyLock{
         Thread thread = Thread.currentThread();
         //System.out.println(Thread.currentThread().getName()+"===>解锁");
         atomic.compareAndSet(thread,null);
+        ArrayList list = new ArrayList();
     }
 }
