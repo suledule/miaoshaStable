@@ -34,6 +34,7 @@ public class LRUCache_LinkList {
     }
     public int get(int key) {
         if (!map.containsKey(key)) {
+            // key不存在，返回-1
             return -1;
         }
         // map中存放的是要找的节点的前驱

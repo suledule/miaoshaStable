@@ -14,7 +14,7 @@ public class SingleLazy {
     //构造方法：当类实例化一个对象时会自动调用构造方法，初始化对象
     private SingleLazy(){
         synchronized (SingleLazy.class){
-            if(flag == false){
+            if(!flag){
                 flag = true;
                 System.out.println(Thread.currentThread().getName()+"==>");
             }else{

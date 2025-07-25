@@ -9,9 +9,7 @@
     <option name="selectedJavaProfile" value="P3C-CodeStyle" />
     <option name="useOldEclipseJavaFormatter" value="true" />
   </component>
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>

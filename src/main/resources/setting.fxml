@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<settings>
+    <localRepository>D:\\maven\\apache-maven-3.6.3\\repo</localRepository>
+    <servers>
+        <server>
+            <id>maven-public</id>
+            <username>wuqiusheng</username>
+            <password>{NpIrQk1z6MAHnPjJUDg7xOxBlYekjgNu/KlK7K/AATM=}</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <mirror>
+            <!--This sends everything else to /public -->
+            <id>maven-public</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://nexus.clsj.sunline.cn/repository/maven-public/</url>
+        </mirror>
+        <mirror>
+            <id>ivy-public</id>
+            <mirrorOf>*</mirrorOf>
+            <url>http://nexus.clsj.sunline.cn/repository/ivy-public/</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>repositories-url-profile</id>
+            <properties>
+                <figtree.releases.url>http://nexus.clsj.sunline.cn/repository/figtree-releases/</figtree.releases.url>
+                <figtree.snapshots.url>http://nexus.clsj.sunline.cn/repository/figtree-snapshots/</figtree.snapshots.url>
+                <maven.3rd.url>http://nexus.clsj.sunline.cn/repository/maven-3rd/</maven.3rd.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>nexus</id>
+            <repositories>
+                <repository>
+                    <id>maven-public</id>
+                    <url>http://nexus.clsj.sunline.cn/repository/maven-public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>nexus</id>
+                    <url>http://nexus.clsj.sunline.cn/repository/maven-public/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+                <repository><id>aliyun</id><url>http://nexus.clsj.sunline.cn/repository/maven-public/</url></repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>maven-public</id>
+                    <url>http://nexus.clsj.sunline.cn/repository/maven-public/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>nexus</id>
+                    <url>http://nexus.clsj.sunline.cn/repository/maven-public/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <activeProfile>repositories-url-profile</activeProfile>
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>
+
+

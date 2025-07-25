@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 public class SocketTest {
+
     public static byte[] socket(String ip,int port,byte[] bytes) throws IOException {
         byte[] result = {};
 

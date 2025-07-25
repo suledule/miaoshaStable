@@ -31,11 +31,15 @@ public class LRUCache_HashMap{
      * @return
      */
     public int get(int key){
+        // 获取map的value
         LinkedNode node = map.get(key);
         if(node == null){
+            // 为空，返回-1
             return -1;
         }
+        // 把当前节点移动到头部
         this.moveToHead(node);
+        // 返回当前节点的值
         return node.value;
     }
 
@@ -45,11 +49,16 @@ public class LRUCache_HashMap{
      * @param value
      */
     public void put(int key, int value){
+        // 获取key对应的节点
         LinkedNode node = map.get(key);
+        // 不存在key
         if(node == null){
+            // 新增节点
             LinkedNode newNode = new LinkedNode();
             newNode.key = key;
             newNode.value = value;
+
+            //
             this.addNode(newNode);
             this.map.put(key, newNode);
             ++count;
@@ -59,8 +68,10 @@ public class LRUCache_HashMap{
                 this.map.remove(lastNode.key);
                 --count;
             }
+        // 存在key，直接修改，并将节点移动到头部
         }else{
             node.value = value;
+            // 将节点移动到头部
             this.moveToHead(node);
         }
     }
@@ -70,7 +81,9 @@ public class LRUCache_HashMap{
      * @param node
      */
     public void moveToHead(LinkedNode node){
+        // 把前后节点相互指向，移除当前节点
         this.removeNode(node);
+        // 把当前节点添加到头部
         this.addNode(node);
     }
 
@@ -91,8 +104,11 @@ public class LRUCache_HashMap{
      * @param node
      */
     public void removeNode(LinkedNode node){
+        // 前节点
         LinkedNode pre = node.pre;
+        // 后节点
         LinkedNode next = node.next;
+        // 前后节点相互指向
         next.pre = pre;
         pre.next = next;
     }
