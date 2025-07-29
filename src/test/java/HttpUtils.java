@@ -52,29 +52,4 @@ public class HttpUtils {
             throw new RuntimeException(e);
         }
     }
-
-    public static void doPostZhiHu() {
-        try {
-            String url = "https://www.zhihu.com/question/1930820223029732945/answer/1931411196466165300";
-            HttpClient client = HttpClients.createDefault();
-            HttpPost post = new HttpPost(url);
-
-            // 发送表单
-            List<NameValuePair> params = new ArrayList<>();
-            post.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
-
-            post.setHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            // 执行请求
-            HttpResponse response = client.execute(post);
-            int statusCode = response.getStatusLine().getStatusCode();
-            String responseBody = EntityUtils.toString(response.getEntity());
-
-            System.out.println("状态码: " + statusCode);
-            System.out.println("响应体: ");
-            System.out.println(responseBody);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

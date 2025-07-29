@@ -13,22 +13,34 @@ public class AmountTest {
 
     @Test
     public void amountTest1() {
-        amountShow(50, 400, 12, 1.02);
+        amountShow(50, 400, 18, 1.02);
     }
 
     @Test
     public void amountTest2() {
-        amountShow(50, 350, 10, 1.02);
+        amountShow(50, 380, 10, 1.02);
     }
 
     @Test
     public void amountTest3() {
-        amountShow(50, 40, 5, 1.02);
+        amountShow(50, 250, 10, 1.02);
     }
 
     @Test
     public void amountTest4() {
-        HttpUtils.doPostZhiHu();
+        amountShow(50, 50, 0, 1.20);
+    }
+
+    @Test
+    public void amountTest10() {
+        double amount = 58*60;
+        double amount1 = 9*38;
+        System.out.println(amount/amount1*50);
+    }
+
+    @Test
+    public void amountTest11() {
+        System.out.println(getYearCost());
     }
 
 
@@ -36,7 +48,9 @@ public class AmountTest {
     public static void amountShow(int year, double total, double cost, double var) {
         for (int i = 1; i <= year; i++) {
             total -= cost;
-            total *= var;
+            if (total > 0) {
+                total *= var;
+            }
             StringBuilder sb = new StringBuilder();
             sb.append(":year:"+i);
             sb.append(":total:"+total);
@@ -84,4 +98,17 @@ public class AmountTest {
         TWO_HELF_WEEKEND,
         ONE_WEEKEND;
     }
+
+    public int getCost() {
+        int clothes = 500;
+        int food = 3000;
+        int live = 3000;
+        int drive = 1500;
+        return clothes+food+live+drive;
+    }
+
+    public int getYearCost() {
+        return getCost()*12;
+    }
 }
+
