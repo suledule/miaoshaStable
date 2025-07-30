@@ -120,6 +120,73 @@
       <artifactId>selenium-java</artifactId>
       <version>4.18.1</version>
     </dependency>
+
+<!--    &lt;!&ndash; PDFBox 核心库 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.pdfbox</groupId>-->
+<!--      <artifactId>pdfbox</artifactId>-->
+<!--      <version>3.0.2</version>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash; PDFBox 2.x 兼容层（可选） &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.pdfbox</groupId>-->
+<!--      <artifactId>pdfbox-compat</artifactId>-->
+<!--      <version>2.0.28</version>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash; 图片处理支持 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.pdfbox</groupId>-->
+<!--      <artifactId>pdfbox-graphics2d</artifactId>-->
+<!--      <version>3.0.2</version>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash; 字体支持（中文处理需要） &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.pdfbox</groupId>-->
+<!--      <artifactId>pdfbox-fontbox</artifactId>-->
+<!--      <version>3.0.2</version>-->
+<!--    </dependency>-->
+
+<!--    &lt;!&ndash; Java原生图像支持 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.xmlgraphics</groupId>-->
+<!--      <artifactId>batik-transcoder</artifactId>-->
+<!--      <version>1.17</version>-->
+<!--    </dependency>-->
+
+    <!-- Tesseract OCR -->
+    <dependency>
+      <groupId>net.sourceforge.tess4j</groupId>
+      <artifactId>tess4j</artifactId>
+      <version>5.2.1</version>
+    </dependency>
+
+    <!-- PDF处理 -->
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+
+    <!-- 图像处理 -->
+    <dependency>
+      <groupId>com.twelvemonkeys.imageio</groupId>
+      <artifactId>imageio-jpeg</artifactId>
+      <version>3.9.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>5.13.0</version> <!-- 确保 ≥5.0 -->
+    </dependency>
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna-platform</artifactId>
+      <version>5.13.0</version>
+    </dependency>
   </dependencies>
 
   <build>

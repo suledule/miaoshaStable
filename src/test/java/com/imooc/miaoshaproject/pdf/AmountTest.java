@@ -1,4 +1,5 @@
-import com.imooc.miaoshaproject.util.TestUnit;
+package com.imooc.miaoshaproject.pdf;
+
 import org.junit.Test;
 
 /**
@@ -13,12 +14,12 @@ public class AmountTest {
 
     @Test
     public void amountTest1() {
-        amountShow(50, 400, 18, 1.02);
+        amountShow(50, 1000, 20, 1.02);
     }
 
     @Test
     public void amountTest2() {
-        amountShow(50, 380, 10, 1.02);
+        amountShow(50, 400, 10, 1.02);
     }
 
     @Test

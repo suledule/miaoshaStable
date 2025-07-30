@@ -1,0 +1,16 @@
+<!-- src/test/resources/logback-test.xml -->
+<configuration>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 测试环境下全局设置为WARN级别 -->
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- 仅为当前项目包设置DEBUG（可选） -->
+    <logger name="com.imooc.miaoshaproject" level="INFO"/>
+</configuration>
